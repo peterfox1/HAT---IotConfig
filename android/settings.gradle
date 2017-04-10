@@ -1,0 +1,3 @@
+rootProject.name = 'hatIotConfig'
+
+include ':app'
