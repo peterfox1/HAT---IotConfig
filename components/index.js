@@ -9,22 +9,40 @@ import {
 	AppRegistry,
 	StyleSheet,
 	Text,
-	View
+	View,
+	Button
 } from 'react-native';
 
 import LightProgrammer from './LightProgrammer.js';
 
 export default class hatIotConfig extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			programmer_isRunning: false
+		};
+	}
+
 	render() {
 		return (
 			<View style={styles.container}>
-				<LightProgrammer />
+				<LightProgrammer
+					ref={(lp) => { this.lightProgrammer = lp; }}
+				/>
 				<Text style={styles.text}>
 					Press Cmd+R to reload,{'\n'}
 					Cmd+D or shake for dev menu
 				</Text>
+				<Button
+					onPress={this._doStartProgram}
+					title="Program"
+				/>
 			</View>
 		);
+	}
+
+	_doStartProgram = () => {
+		this.lightProgrammer.start();
 	}
 }
 
